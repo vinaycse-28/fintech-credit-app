@@ -1,0 +1,11 @@
+transaction_id,date,amount,transaction_type,payment_method,category,description
+TAMPER-001,2026-02-01,50000,credit,UPI,Sales Revenue,Customer purchase
+TAMPER-002,2026-02-03,50000,credit,UPI,Sales Revenue,Suspicious identical sum #1
+TAMPER-003,2026-02-05,50000,credit,UPI,Sales Revenue,Suspicious identical sum #2
+TAMPER-004,2026-02-08,50000,credit,UPI,Sales Revenue,Suspicious identical sum #3
+TAMPER-005,2026-02-10,50000,credit,UPI,Sales Revenue,Suspicious identical sum #4
+TAMPER-001,2026-02-01,50000,credit,UPI,Sales Revenue,Customer purchase
+TAMPER-006,2030-05-15,75000,credit,Bank Transfer,Sales Revenue,Impossible future date txn
+TAMPER-007,2026-02-12,18000,debit,Cash,Rent & Utilities,Shop rent payment
+TAMPER-008,2026-02-18,22000,debit,Bank Transfer,Supplier Settlement,Vendor bill settlement
+TAMPER-009,2026-02-24,50000,credit,UPI,Sales Revenue,Suspicious identical sum #5

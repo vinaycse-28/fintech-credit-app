@@ -1,0 +1,113 @@
+transaction_id,date,amount,transaction_type,payment_method,category,description
+URB-0001,2026-01-02,23333,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #1
+URB-0002,2026-01-04,22883,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #2
+URB-0003,2026-01-06,24533,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #3
+URB-0004,2026-01-08,21983,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #4
+URB-0005,2026-01-10,25733,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #5
+URB-0006,2026-01-12,21083,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #6
+URB-0007,2026-01-14,26933,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #7
+URB-0008,2026-01-16,20183,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #8
+URB-0009,2026-01-18,28133,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #9
+URB-0010,2026-01-20,19283,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #10
+URB-0011,2026-01-22,29333,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #11
+URB-0012,2026-01-24,18383,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #12
+URB-0013,2026-01-04,50000,debit,Bank Transfer,Inventory Purchase,Kitchen operations: Inventory Purchase
+URB-0014,2026-01-10,50000,debit,Bank Transfer,Staff Payroll,Kitchen operations: Staff Payroll
+URB-0015,2026-01-16,50000,debit,UPI,Rent & Utilities,Kitchen operations: Rent & Utilities
+URB-0016,2026-01-22,50000,debit,UPI,Operational Expenses,Kitchen operations: Operational Expenses
+URB-0017,2026-02-02,25833,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #17
+URB-0018,2026-02-04,25383,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #18
+URB-0019,2026-02-06,27033,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #19
+URB-0020,2026-02-08,24483,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #20
+URB-0021,2026-02-10,28233,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #21
+URB-0022,2026-02-12,23583,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #22
+URB-0023,2026-02-14,29433,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #23
+URB-0024,2026-02-16,22683,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #24
+URB-0025,2026-02-18,30633,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #25
+URB-0026,2026-02-20,21783,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #26
+URB-0027,2026-02-22,31833,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #27
+URB-0028,2026-02-24,20883,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #28
+URB-0029,2026-02-04,55000,debit,Bank Transfer,Inventory Purchase,Kitchen operations: Inventory Purchase
+URB-0030,2026-02-10,55000,debit,Bank Transfer,Staff Payroll,Kitchen operations: Staff Payroll
+URB-0031,2026-02-16,55000,debit,UPI,Rent & Utilities,Kitchen operations: Rent & Utilities
+URB-0032,2026-02-22,55000,debit,UPI,Operational Expenses,Kitchen operations: Operational Expenses
+URB-0033,2026-03-02,28750,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #33
+URB-0034,2026-03-04,28300,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #34
+URB-0035,2026-03-06,29950,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #35
+URB-0036,2026-03-08,27400,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #36
+URB-0037,2026-03-10,31150,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #37
+URB-0038,2026-03-12,26500,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #38
+URB-0039,2026-03-14,32350,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #39
+URB-0040,2026-03-16,25600,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #40
+URB-0041,2026-03-18,33550,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #41
+URB-0042,2026-03-20,24700,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #42
+URB-0043,2026-03-22,34750,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #43
+URB-0044,2026-03-24,23800,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #44
+URB-0045,2026-03-04,60000,debit,Bank Transfer,Inventory Purchase,Kitchen operations: Inventory Purchase
+URB-0046,2026-03-10,60000,debit,Bank Transfer,Staff Payroll,Kitchen operations: Staff Payroll
+URB-0047,2026-03-16,60000,debit,UPI,Rent & Utilities,Kitchen operations: Rent & Utilities
+URB-0048,2026-03-22,60000,debit,UPI,Operational Expenses,Kitchen operations: Operational Expenses
+URB-0049,2026-04-02,32500,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #49
+URB-0050,2026-04-04,32050,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #50
+URB-0051,2026-04-06,33700,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #51
+URB-0052,2026-04-08,31150,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #52
+URB-0053,2026-04-10,34900,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #53
+URB-0054,2026-04-12,30250,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #54
+URB-0055,2026-04-14,36100,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #55
+URB-0056,2026-04-16,29350,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #56
+URB-0057,2026-04-18,37300,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #57
+URB-0058,2026-04-20,28450,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #58
+URB-0059,2026-04-22,38500,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #59
+URB-0060,2026-04-24,27550,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #60
+URB-0061,2026-04-04,68750,debit,Bank Transfer,Inventory Purchase,Kitchen operations: Inventory Purchase
+URB-0062,2026-04-10,68750,debit,Bank Transfer,Staff Payroll,Kitchen operations: Staff Payroll
+URB-0063,2026-04-16,68750,debit,UPI,Rent & Utilities,Kitchen operations: Rent & Utilities
+URB-0064,2026-04-22,68750,debit,UPI,Operational Expenses,Kitchen operations: Operational Expenses
+URB-0065,2026-05-02,35000,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #65
+URB-0066,2026-05-04,34550,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #66
+URB-0067,2026-05-06,36200,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #67
+URB-0068,2026-05-08,33650,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #68
+URB-0069,2026-05-10,37400,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #69
+URB-0070,2026-05-12,32750,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #70
+URB-0071,2026-05-14,38600,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #71
+URB-0072,2026-05-16,31850,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #72
+URB-0073,2026-05-18,39800,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #73
+URB-0074,2026-05-20,30950,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #74
+URB-0075,2026-05-22,41000,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #75
+URB-0076,2026-05-24,30050,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #76
+URB-0077,2026-05-04,73750,debit,Bank Transfer,Inventory Purchase,Kitchen operations: Inventory Purchase
+URB-0078,2026-05-10,73750,debit,Bank Transfer,Staff Payroll,Kitchen operations: Staff Payroll
+URB-0079,2026-05-16,73750,debit,UPI,Rent & Utilities,Kitchen operations: Rent & Utilities
+URB-0080,2026-05-22,73750,debit,UPI,Operational Expenses,Kitchen operations: Operational Expenses
+URB-0081,2026-06-02,38333,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #81
+URB-0082,2026-06-04,37883,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #82
+URB-0083,2026-06-06,39533,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #83
+URB-0084,2026-06-08,36983,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #84
+URB-0085,2026-06-10,40733,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #85
+URB-0086,2026-06-12,36083,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #86
+URB-0087,2026-06-14,41933,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #87
+URB-0088,2026-06-16,35183,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #88
+URB-0089,2026-06-18,43133,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #89
+URB-0090,2026-06-20,34283,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #90
+URB-0091,2026-06-22,44333,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #91
+URB-0092,2026-06-24,33383,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #92
+URB-0093,2026-06-04,80000,debit,Bank Transfer,Inventory Purchase,Kitchen operations: Inventory Purchase
+URB-0094,2026-06-10,80000,debit,Bank Transfer,Staff Payroll,Kitchen operations: Staff Payroll
+URB-0095,2026-06-16,80000,debit,UPI,Rent & Utilities,Kitchen operations: Rent & Utilities
+URB-0096,2026-06-22,80000,debit,UPI,Operational Expenses,Kitchen operations: Operational Expenses
+URB-0097,2026-07-02,40833,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #97
+URB-0098,2026-07-04,40383,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #98
+URB-0099,2026-07-06,42033,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #99
+URB-0100,2026-07-08,39483,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #100
+URB-0101,2026-07-10,43233,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #101
+URB-0102,2026-07-12,38583,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #102
+URB-0103,2026-07-14,44433,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #103
+URB-0104,2026-07-16,37683,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #104
+URB-0105,2026-07-18,45633,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #105
+URB-0106,2026-07-20,36783,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #106
+URB-0107,2026-07-22,46833,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #107
+URB-0108,2026-07-24,35883,credit,UPI,Sales Revenue,Cloud kitchen delivery order payout via aggregator #108
+URB-0109,2026-07-04,86250,debit,Bank Transfer,Inventory Purchase,Kitchen operations: Inventory Purchase
+URB-0110,2026-07-10,86250,debit,Bank Transfer,Staff Payroll,Kitchen operations: Staff Payroll
+URB-0111,2026-07-16,86250,debit,UPI,Rent & Utilities,Kitchen operations: Rent & Utilities
+URB-0112,2026-07-22,86250,debit,UPI,Operational Expenses,Kitchen operations: Operational Expenses

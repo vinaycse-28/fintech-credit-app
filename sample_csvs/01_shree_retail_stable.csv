@@ -1,0 +1,121 @@
+transaction_id,date,amount,transaction_type,payment_method,category,description
+SHREE-0001,2026-01-03,44500,credit,UPI,Sales Revenue,Daily store sales and customer collections #1
+SHREE-0002,2026-01-05,43880,credit,UPI,Sales Revenue,Daily store sales and customer collections #2
+SHREE-0003,2026-01-07,46200,credit,UPI,Sales Revenue,Daily store sales and customer collections #3
+SHREE-0004,2026-01-09,42640,credit,UPI,Sales Revenue,Daily store sales and customer collections #4
+SHREE-0005,2026-01-11,47900,credit,UPI,Sales Revenue,Daily store sales and customer collections #5
+SHREE-0006,2026-01-13,41400,credit,UPI,Sales Revenue,Daily store sales and customer collections #6
+SHREE-0007,2026-01-15,49600,credit,UPI,Sales Revenue,Daily store sales and customer collections #7
+SHREE-0008,2026-01-17,40160,credit,Bank Transfer,Sales Revenue,Daily store sales and customer collections #8
+SHREE-0009,2026-01-19,51300,credit,Bank Transfer,Sales Revenue,Daily store sales and customer collections #9
+SHREE-0010,2026-01-21,38920,credit,Cash,Sales Revenue,Daily store sales and customer collections #10
+SHREE-0011,2026-01-04,68000,debit,Bank Transfer,Inventory Purchase,Operational disbursement: Inventory Purchase
+SHREE-0012,2026-01-09,67100,debit,Bank Transfer,Staff Payroll,Operational disbursement: Staff Payroll
+SHREE-0013,2026-01-14,70400,debit,Bank Transfer,Rent & Utilities,Operational disbursement: Rent & Utilities
+SHREE-0014,2026-01-19,65300,debit,UPI,Supplier Settlement,Operational disbursement: Supplier Settlement
+SHREE-0015,2026-01-24,72800,debit,Cash,Operational Expenses,Operational disbursement: Operational Expenses
+SHREE-0016,2026-02-03,43200,credit,UPI,Sales Revenue,Daily store sales and customer collections #16
+SHREE-0017,2026-02-05,42580,credit,UPI,Sales Revenue,Daily store sales and customer collections #17
+SHREE-0018,2026-02-07,44900,credit,UPI,Sales Revenue,Daily store sales and customer collections #18
+SHREE-0019,2026-02-09,41340,credit,UPI,Sales Revenue,Daily store sales and customer collections #19
+SHREE-0020,2026-02-11,46600,credit,UPI,Sales Revenue,Daily store sales and customer collections #20
+SHREE-0021,2026-02-13,40100,credit,UPI,Sales Revenue,Daily store sales and customer collections #21
+SHREE-0022,2026-02-15,48300,credit,UPI,Sales Revenue,Daily store sales and customer collections #22
+SHREE-0023,2026-02-17,38860,credit,Bank Transfer,Sales Revenue,Daily store sales and customer collections #23
+SHREE-0024,2026-02-19,50000,credit,Bank Transfer,Sales Revenue,Daily store sales and customer collections #24
+SHREE-0025,2026-02-21,37620,credit,Cash,Sales Revenue,Daily store sales and customer collections #25
+SHREE-0026,2026-02-04,67000,debit,Bank Transfer,Inventory Purchase,Operational disbursement: Inventory Purchase
+SHREE-0027,2026-02-09,66100,debit,Bank Transfer,Staff Payroll,Operational disbursement: Staff Payroll
+SHREE-0028,2026-02-14,69400,debit,Bank Transfer,Rent & Utilities,Operational disbursement: Rent & Utilities
+SHREE-0029,2026-02-19,64300,debit,UPI,Supplier Settlement,Operational disbursement: Supplier Settlement
+SHREE-0030,2026-02-24,71800,debit,Cash,Operational Expenses,Operational disbursement: Operational Expenses
+SHREE-0031,2026-03-03,46000,credit,UPI,Sales Revenue,Daily store sales and customer collections #31
+SHREE-0032,2026-03-05,45380,credit,UPI,Sales Revenue,Daily store sales and customer collections #32
+SHREE-0033,2026-03-07,47700,credit,UPI,Sales Revenue,Daily store sales and customer collections #33
+SHREE-0034,2026-03-09,44140,credit,UPI,Sales Revenue,Daily store sales and customer collections #34
+SHREE-0035,2026-03-11,49400,credit,UPI,Sales Revenue,Daily store sales and customer collections #35
+SHREE-0036,2026-03-13,42900,credit,UPI,Sales Revenue,Daily store sales and customer collections #36
+SHREE-0037,2026-03-15,51100,credit,UPI,Sales Revenue,Daily store sales and customer collections #37
+SHREE-0038,2026-03-17,41660,credit,Bank Transfer,Sales Revenue,Daily store sales and customer collections #38
+SHREE-0039,2026-03-19,52800,credit,Bank Transfer,Sales Revenue,Daily store sales and customer collections #39
+SHREE-0040,2026-03-21,40420,credit,Cash,Sales Revenue,Daily store sales and customer collections #40
+SHREE-0041,2026-03-04,70400,debit,Bank Transfer,Inventory Purchase,Operational disbursement: Inventory Purchase
+SHREE-0042,2026-03-09,69500,debit,Bank Transfer,Staff Payroll,Operational disbursement: Staff Payroll
+SHREE-0043,2026-03-14,72800,debit,Bank Transfer,Rent & Utilities,Operational disbursement: Rent & Utilities
+SHREE-0044,2026-03-19,67700,debit,UPI,Supplier Settlement,Operational disbursement: Supplier Settlement
+SHREE-0045,2026-03-24,75200,debit,Cash,Operational Expenses,Operational disbursement: Operational Expenses
+SHREE-0046,2026-04-03,45100,credit,UPI,Sales Revenue,Daily store sales and customer collections #46
+SHREE-0047,2026-04-05,44480,credit,UPI,Sales Revenue,Daily store sales and customer collections #47
+SHREE-0048,2026-04-07,46800,credit,UPI,Sales Revenue,Daily store sales and customer collections #48
+SHREE-0049,2026-04-09,43240,credit,UPI,Sales Revenue,Daily store sales and customer collections #49
+SHREE-0050,2026-04-11,48500,credit,UPI,Sales Revenue,Daily store sales and customer collections #50
+SHREE-0051,2026-04-13,42000,credit,UPI,Sales Revenue,Daily store sales and customer collections #51
+SHREE-0052,2026-04-15,50200,credit,UPI,Sales Revenue,Daily store sales and customer collections #52
+SHREE-0053,2026-04-17,40760,credit,Bank Transfer,Sales Revenue,Daily store sales and customer collections #53
+SHREE-0054,2026-04-19,51900,credit,Bank Transfer,Sales Revenue,Daily store sales and customer collections #54
+SHREE-0055,2026-04-21,39520,credit,Cash,Sales Revenue,Daily store sales and customer collections #55
+SHREE-0056,2026-04-04,69600,debit,Bank Transfer,Inventory Purchase,Operational disbursement: Inventory Purchase
+SHREE-0057,2026-04-09,68700,debit,Bank Transfer,Staff Payroll,Operational disbursement: Staff Payroll
+SHREE-0058,2026-04-14,72000,debit,Bank Transfer,Rent & Utilities,Operational disbursement: Rent & Utilities
+SHREE-0059,2026-04-19,66900,debit,UPI,Supplier Settlement,Operational disbursement: Supplier Settlement
+SHREE-0060,2026-04-24,74400,debit,Cash,Operational Expenses,Operational disbursement: Operational Expenses
+SHREE-0061,2026-05-03,46800,credit,UPI,Sales Revenue,Daily store sales and customer collections #61
+SHREE-0062,2026-05-05,46180,credit,UPI,Sales Revenue,Daily store sales and customer collections #62
+SHREE-0063,2026-05-07,48500,credit,UPI,Sales Revenue,Daily store sales and customer collections #63
+SHREE-0064,2026-05-09,44940,credit,UPI,Sales Revenue,Daily store sales and customer collections #64
+SHREE-0065,2026-05-11,50200,credit,UPI,Sales Revenue,Daily store sales and customer collections #65
+SHREE-0066,2026-05-13,43700,credit,UPI,Sales Revenue,Daily store sales and customer collections #66
+SHREE-0067,2026-05-15,51900,credit,UPI,Sales Revenue,Daily store sales and customer collections #67
+SHREE-0068,2026-05-17,42460,credit,Bank Transfer,Sales Revenue,Daily store sales and customer collections #68
+SHREE-0069,2026-05-19,53600,credit,Bank Transfer,Sales Revenue,Daily store sales and customer collections #69
+SHREE-0070,2026-05-21,41220,credit,Cash,Sales Revenue,Daily store sales and customer collections #70
+SHREE-0071,2026-05-04,72000,debit,Bank Transfer,Inventory Purchase,Operational disbursement: Inventory Purchase
+SHREE-0072,2026-05-09,71100,debit,Bank Transfer,Staff Payroll,Operational disbursement: Staff Payroll
+SHREE-0073,2026-05-14,74400,debit,Bank Transfer,Rent & Utilities,Operational disbursement: Rent & Utilities
+SHREE-0074,2026-05-19,69300,debit,UPI,Supplier Settlement,Operational disbursement: Supplier Settlement
+SHREE-0075,2026-05-24,76800,debit,Cash,Operational Expenses,Operational disbursement: Operational Expenses
+SHREE-0076,2026-06-03,45500,credit,UPI,Sales Revenue,Daily store sales and customer collections #76
+SHREE-0077,2026-06-05,44880,credit,UPI,Sales Revenue,Daily store sales and customer collections #77
+SHREE-0078,2026-06-07,47200,credit,UPI,Sales Revenue,Daily store sales and customer collections #78
+SHREE-0079,2026-06-09,43640,credit,UPI,Sales Revenue,Daily store sales and customer collections #79
+SHREE-0080,2026-06-11,48900,credit,UPI,Sales Revenue,Daily store sales and customer collections #80
+SHREE-0081,2026-06-13,42400,credit,UPI,Sales Revenue,Daily store sales and customer collections #81
+SHREE-0082,2026-06-15,50600,credit,UPI,Sales Revenue,Daily store sales and customer collections #82
+SHREE-0083,2026-06-17,41160,credit,Bank Transfer,Sales Revenue,Daily store sales and customer collections #83
+SHREE-0084,2026-06-19,52300,credit,Bank Transfer,Sales Revenue,Daily store sales and customer collections #84
+SHREE-0085,2026-06-21,39920,credit,Cash,Sales Revenue,Daily store sales and customer collections #85
+SHREE-0086,2026-06-04,70000,debit,Bank Transfer,Inventory Purchase,Operational disbursement: Inventory Purchase
+SHREE-0087,2026-06-09,69100,debit,Bank Transfer,Staff Payroll,Operational disbursement: Staff Payroll
+SHREE-0088,2026-06-14,72400,debit,Bank Transfer,Rent & Utilities,Operational disbursement: Rent & Utilities
+SHREE-0089,2026-06-19,67300,debit,UPI,Supplier Settlement,Operational disbursement: Supplier Settlement
+SHREE-0090,2026-06-24,74800,debit,Cash,Operational Expenses,Operational disbursement: Operational Expenses
+SHREE-0091,2026-07-03,47200,credit,UPI,Sales Revenue,Daily store sales and customer collections #91
+SHREE-0092,2026-07-05,46580,credit,UPI,Sales Revenue,Daily store sales and customer collections #92
+SHREE-0093,2026-07-07,48900,credit,UPI,Sales Revenue,Daily store sales and customer collections #93
+SHREE-0094,2026-07-09,45340,credit,UPI,Sales Revenue,Daily store sales and customer collections #94
+SHREE-0095,2026-07-11,50600,credit,UPI,Sales Revenue,Daily store sales and customer collections #95
+SHREE-0096,2026-07-13,44100,credit,UPI,Sales Revenue,Daily store sales and customer collections #96
+SHREE-0097,2026-07-15,52300,credit,UPI,Sales Revenue,Daily store sales and customer collections #97
+SHREE-0098,2026-07-17,42860,credit,Bank Transfer,Sales Revenue,Daily store sales and customer collections #98
+SHREE-0099,2026-07-19,54000,credit,Bank Transfer,Sales Revenue,Daily store sales and customer collections #99
+SHREE-0100,2026-07-21,41620,credit,Cash,Sales Revenue,Daily store sales and customer collections #100
+SHREE-0101,2026-07-04,73000,debit,Bank Transfer,Inventory Purchase,Operational disbursement: Inventory Purchase
+SHREE-0102,2026-07-09,72100,debit,Bank Transfer,Staff Payroll,Operational disbursement: Staff Payroll
+SHREE-0103,2026-07-14,75400,debit,Bank Transfer,Rent & Utilities,Operational disbursement: Rent & Utilities
+SHREE-0104,2026-07-19,70300,debit,UPI,Supplier Settlement,Operational disbursement: Supplier Settlement
+SHREE-0105,2026-07-24,77800,debit,Cash,Operational Expenses,Operational disbursement: Operational Expenses
+SHREE-0106,2026-08-03,48500,credit,UPI,Sales Revenue,Daily store sales and customer collections #106
+SHREE-0107,2026-08-05,47880,credit,UPI,Sales Revenue,Daily store sales and customer collections #107
+SHREE-0108,2026-08-07,50200,credit,UPI,Sales Revenue,Daily store sales and customer collections #108
+SHREE-0109,2026-08-09,46640,credit,UPI,Sales Revenue,Daily store sales and customer collections #109
+SHREE-0110,2026-08-11,51900,credit,UPI,Sales Revenue,Daily store sales and customer collections #110
+SHREE-0111,2026-08-13,45400,credit,UPI,Sales Revenue,Daily store sales and customer collections #111
+SHREE-0112,2026-08-15,53600,credit,UPI,Sales Revenue,Daily store sales and customer collections #112
+SHREE-0113,2026-08-17,44160,credit,Bank Transfer,Sales Revenue,Daily store sales and customer collections #113
+SHREE-0114,2026-08-19,55300,credit,Bank Transfer,Sales Revenue,Daily store sales and customer collections #114
+SHREE-0115,2026-08-21,42920,credit,Cash,Sales Revenue,Daily store sales and customer collections #115
+SHREE-0116,2026-08-04,74000,debit,Bank Transfer,Inventory Purchase,Operational disbursement: Inventory Purchase
+SHREE-0117,2026-08-09,73100,debit,Bank Transfer,Staff Payroll,Operational disbursement: Staff Payroll
+SHREE-0118,2026-08-14,76400,debit,Bank Transfer,Rent & Utilities,Operational disbursement: Rent & Utilities
+SHREE-0119,2026-08-19,71300,debit,UPI,Supplier Settlement,Operational disbursement: Supplier Settlement
+SHREE-0120,2026-08-24,78800,debit,Cash,Operational Expenses,Operational disbursement: Operational Expenses

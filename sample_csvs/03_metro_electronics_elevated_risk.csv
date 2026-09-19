@@ -1,0 +1,45 @@
+transaction_id,date,amount,transaction_type,payment_method,category,description
+METRO-0001,2026-01-03,104000,credit,Cash,Sales Revenue,Customer hardware repair and accessory sale #1
+METRO-0002,2026-01-08,100000,credit,Cash,Sales Revenue,Customer hardware repair and accessory sale #2
+METRO-0003,2026-01-13,114000,credit,Cash,Sales Revenue,Customer hardware repair and accessory sale #3
+METRO-0004,2026-01-18,92000,credit,UPI,Sales Revenue,Customer hardware repair and accessory sale #4
+METRO-0005,2026-01-23,124000,credit,UPI,Sales Revenue,Customer hardware repair and accessory sale #5
+METRO-0006,2026-01-05,130000,debit,Bank Transfer,Inventory Purchase,Vendor settlement: spare parts & overheads
+METRO-0007,2026-01-13,130000,debit,Cash,Operational Expenses,Vendor settlement: spare parts & overheads
+METRO-0008,2026-01-21,130000,debit,Cash,Operational Expenses,Vendor settlement: spare parts & overheads
+METRO-0009,2026-02-03,58000,credit,Cash,Sales Revenue,Customer hardware repair and accessory sale #9
+METRO-0010,2026-02-08,54000,credit,Cash,Sales Revenue,Customer hardware repair and accessory sale #10
+METRO-0011,2026-02-13,68000,credit,Cash,Sales Revenue,Customer hardware repair and accessory sale #11
+METRO-0012,2026-02-18,46000,credit,UPI,Sales Revenue,Customer hardware repair and accessory sale #12
+METRO-0013,2026-02-23,78000,credit,UPI,Sales Revenue,Customer hardware repair and accessory sale #13
+METRO-0014,2026-02-05,103333,debit,Bank Transfer,Inventory Purchase,Vendor settlement: spare parts & overheads
+METRO-0015,2026-02-13,103333,debit,Cash,Operational Expenses,Vendor settlement: spare parts & overheads
+METRO-0016,2026-02-21,103333,debit,Cash,Operational Expenses,Vendor settlement: spare parts & overheads
+METRO-0017,2026-03-03,122000,credit,Cash,Sales Revenue,Customer hardware repair and accessory sale #17
+METRO-0018,2026-03-08,118000,credit,Cash,Sales Revenue,Customer hardware repair and accessory sale #18
+METRO-0019,2026-03-13,132000,credit,Cash,Sales Revenue,Customer hardware repair and accessory sale #19
+METRO-0020,2026-03-18,110000,credit,UPI,Sales Revenue,Customer hardware repair and accessory sale #20
+METRO-0021,2026-03-23,142000,credit,UPI,Sales Revenue,Customer hardware repair and accessory sale #21
+METRO-0022,2026-03-05,140000,debit,Bank Transfer,Inventory Purchase,Vendor settlement: spare parts & overheads
+METRO-0023,2026-03-13,140000,debit,Cash,Operational Expenses,Vendor settlement: spare parts & overheads
+METRO-0024,2026-03-21,140000,debit,Cash,Operational Expenses,Vendor settlement: spare parts & overheads
+METRO-0025,2026-04-03,110000,credit,Cash,Sales Revenue,Counter component retail repair batch
+METRO-0026,2026-04-04,780000,debit,Bank Transfer,Inventory Purchase,Emergency bulk display panel & chip import inventory
+METRO-0027,2026-04-23,130000,credit,UPI,Sales Revenue,Resumed shop sales post disruption
+METRO-0028,2026-04-26,110000,debit,Cash,Staff Payroll,Staff delayed compensation
+METRO-0029,2026-05-03,96000,credit,Cash,Sales Revenue,Customer hardware repair and accessory sale #29
+METRO-0030,2026-05-08,92000,credit,Cash,Sales Revenue,Customer hardware repair and accessory sale #30
+METRO-0031,2026-05-13,106000,credit,Cash,Sales Revenue,Customer hardware repair and accessory sale #31
+METRO-0032,2026-05-18,84000,credit,UPI,Sales Revenue,Customer hardware repair and accessory sale #32
+METRO-0033,2026-05-23,116000,credit,UPI,Sales Revenue,Customer hardware repair and accessory sale #33
+METRO-0034,2026-05-05,120000,debit,Bank Transfer,Inventory Purchase,Vendor settlement: spare parts & overheads
+METRO-0035,2026-05-13,120000,debit,Cash,Operational Expenses,Vendor settlement: spare parts & overheads
+METRO-0036,2026-05-21,120000,debit,Cash,Operational Expenses,Vendor settlement: spare parts & overheads
+METRO-0037,2026-06-03,38000,credit,Cash,Sales Revenue,Customer hardware repair and accessory sale #37
+METRO-0038,2026-06-08,34000,credit,Cash,Sales Revenue,Customer hardware repair and accessory sale #38
+METRO-0039,2026-06-13,48000,credit,Cash,Sales Revenue,Customer hardware repair and accessory sale #39
+METRO-0040,2026-06-18,26000,credit,UPI,Sales Revenue,Customer hardware repair and accessory sale #40
+METRO-0041,2026-06-23,58000,credit,UPI,Sales Revenue,Customer hardware repair and accessory sale #41
+METRO-0042,2026-06-05,93333,debit,Bank Transfer,Inventory Purchase,Vendor settlement: spare parts & overheads
+METRO-0043,2026-06-13,93333,debit,Cash,Operational Expenses,Vendor settlement: spare parts & overheads
+METRO-0044,2026-06-21,93333,debit,Cash,Operational Expenses,Vendor settlement: spare parts & overheads

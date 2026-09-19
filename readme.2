@@ -1,0 +1,446 @@
+# CREDITBRIDGE
+### Explainable Creditworthiness for Credit-Invisible MSMEs
+
+> **"Don't just score a credit-invisible business. First understand its financial behaviour and check whether the financial story is internally consistent."**
+
+---
+
+## 1. Project Overview
+
+**CREDITBRIDGE** is an explainable creditworthiness assessment platform designed to help human lenders evaluate Micro, Small, and Medium Enterprises (MSMEs) that lack meaningful traditional credit bureau history (thin-file / "credit-invisible" borrowers).
+
+Rather than relying on non-existent bureau scores or creating a black-box automated approval machine, CREDITBRIDGE analyzes granular, synthetic transaction ledgers and cash-flow data. It rigorously verifies **data trust**, checks **internal financial story consistency**, evaluates **cross-signal alignment**, extracts **multidimensional behavioral patterns**, and generates a transparent **0–100 Creditworthiness Signal** accompanied by human-readable explanations (**"WHY THIS SIGNAL?"**) and operational risk warnings.
+
+> [!IMPORTANT]
+> **Human-in-the-Loop Decision Support**: CREDITBRIDGE is **NOT** an automated loan approval or disbursement engine. It produces an analytical decision-support signal; the human lender remains solely responsible for the final credit decision.
+
+---
+
+## 2. Problem Statement & Context
+
+In developing economies like India, over **86% of the 7.3 crore MSMEs** remain locked out of the formal credit system. This credit gap exceeds **₹25 lakh crore**. 
+
+* **The Credit-Invisible Dilemma**: Traditional lenders rely on credit bureaus (e.g., CIBIL) that look for years of formal loan repayment history. A micro-enterprise (such as a local grocery shop, street food vendor, or small artisan) may have vibrant daily sales, positive operational cash flow, and steady digital payments, yet receive a bureau score of **0** or **Thin-File (Insufficient Information)**.
+* **The Traditional Result**: The applicant is rejected outright or forced to borrow from predatory informal moneylenders charging 24%–60%+ annual interest.
+* **The Solution**: CREDITBRIDGE makes credit-invisible MSMEs **assessable** by examining transaction-based financial behaviour, cash-flow discipline, and data consistency.
+
+### Target Users
+1. **Lenders & Underwriters (Banks, NBFCs, MFIs)**: Credit officers seeking a reliable, fraud-resistant, explainable tool to evaluate thin-file MSME working capital applications without high manual audit costs.
+2. **Loan Applicants (MSME Business Owners)**: Micro-entrepreneurs seeking fair, transparent evaluation based on their real business activity rather than collateral or prior formal loans.
+
+---
+
+## 3. Core Product Idea & Key Differentiators
+
+### Traditional Assessment vs. CREDITBRIDGE Paradigm
+
+```
+TRADITIONAL CREDIT ASSESSMENT:
+  No Meaningful Credit History ──► Insufficient Information ──► REJECTION / ZERO SIGNAL
+
+CREDITBRIDGE PARADIGM:
+  Transaction Data
+         │
+         ▼
+  Financial Intelligence
+         │
+         ▼
+  Data Trust & Consistency ⭐
+         │
+         ▼
+  Financial Behaviour Analysis
+         │
+         ▼
+  Creditworthiness Signal (0–100)
+         │
+         ▼
+  WHY THIS SIGNAL? (Explainability)
+         │
+         ▼
+  Risk Indicators
+         │
+         ▼
+  Human Lender Review
+```
+
+### The Three Core Differentiators
+1. **Data Trust Check ⭐**: Inspects the raw transaction stream for internal consistency, impossible dates, duplicate transactions, and suspicious patterns before any financial metrics are calculated.
+2. **Financial Story Consistency ⭐**: Compares the applicant's self-declared monthly revenue against their actual observed transaction inflows to detect storytelling gaps.
+3. **Cross-Signal Consistency ⭐**: Cross-examines whether Revenue Growth, Transaction Activity Growth, and Cash-Flow Growth move in harmony or contradict one another.
+
+---
+
+## 4. End-to-End Operational Workflow
+
+The application executes a structured, 9-stage pipeline from raw user input to the final human lender review:
+
+```mermaid
+flowchart TD
+    A[Stage 1: User Data Input<br/>CSV Upload or Demo Selection] --> B[Stage 2: Data Trust Verification<br/>Duplicates, Dates, Repeated Amounts]
+    B --> C[Stage 3: Financial Story Check<br/>Declared vs. Observed Revenue]
+    C --> D[Stage 4: Financial Behaviour Analysis<br/>Revenue, Expenses, Cash Flow, Txns, Seasonality, Mix]
+    D --> E[Stage 5: Cross-Signal Consistency<br/>Revenue vs. Txn vs. Cash Flow Trends]
+    E --> F[Stage 6: Creditworthiness Signal<br/>0–100 Weighted Calculation]
+    F --> G[Stage 7: 'WHY THIS SIGNAL?'<br/>Dynamic Positive & Negative Attribution]
+    G --> H[Stage 8: Risk Indicators<br/>Automated Anomaly & Hazard Flags]
+    H --> I[Stage 9: Single-Screen Lender Dashboard<br/>Consolidated Cockpit for Human Review]
+```
+
+### Step-by-Step Breakdown:
+
+#### Stage 1: Data Input & Intake
+* The user lands on the dashboard and inputs the business profile (Name, Type, Business Age, Declared Monthly Revenue).
+* The user either **uploads a synthetic transaction CSV** or selects one of the **3 pre-loaded demo businesses** (*Shree Retail Traders*, *Urban Foods*, or *Metro Electronics*).
+
+#### Stage 2: Data Trust Verification Engine
+* Before computing financial performance, the ledger undergoes automated integrity checks:
+  1. Identifies duplicate transaction rows and duplicate transaction IDs.
+  2. Validates chronological consistency, missing dates, and future timestamps.
+  3. Scans for suspicious repeated amounts (e.g., abnormally high clustering of identical sums).
+  4. Flags unnaturally uniform or "suspiciously perfect" daily patterns.
+* Produces an internal **Data Trust Status**: `High`, `Medium`, or `Review Required`.
+
+#### Stage 3: Financial Story Consistency Check
+* Compares the applicant's **Declared Monthly Revenue** with the **Observed Average Monthly Inflow**:
+  $$\text{Variance \%} = \frac{|\text{Declared Revenue} - \text{Observed Inflow}|}{\text{Declared Revenue}} \times 100$$
+* Classifies story consistency:
+  * `< 15%`: **Consistent** (Financial story matches transaction reality).
+  * `15% – 30%`: **Minor Variance**.
+  * `> 30%`: **Possible Inconsistency Detected** (Requires underwriter clarification).
+
+#### Stage 4: Financial Behaviour Analysis
+The engine processes all credit and debit transactions to calculate:
+* **Revenue Metrics**: Total revenue, monthly run-rates, QoQ growth %, and coefficient of variation for consistency.
+* **Expense Metrics**: Total debits, monthly expense run-rates, expense-to-revenue ratio, and statistical expense spike detection ($\text{Expense} > \mu + 2\sigma$).
+* **Cash-Flow Dynamics**: Net cash flow ($\text{Inflows} - \text{Outflows}$), count of positive vs. negative months, and average monthly net margin.
+* **Transaction Behaviour**: Transaction counts, average ticket size, monthly frequency, and maximum dormancy gap between consecutive transactions.
+* **Seasonality Pattern**: Grouping by calendar months to distinguish recurring seasonal peaks/lean cycles from structural decline.
+* **Payment Mix**: Categorization into UPI, Bank Transfer, Cash, and Other.
+
+#### Stage 5: Cross-Signal Consistency Evaluation
+* Triangulates the trajectory of three distinct signals over time:
+  1. **Revenue Growth Trend**
+  2. **Transaction Count Trend**
+  3. **Net Cash-Flow Trend**
+* Validates whether they move in logical correlation:
+  * *Consistent Pattern*: Revenue is up +20%, Transactions are up +18%, Cash Flow is up +17%.
+  * *Inconsistent Pattern*: Revenue is up +50%, but Transactions are up only +3% and Cash Flow is down -2% (flags unusual ticket inflation or margin collapse).
+
+#### Stage 6: Creditworthiness Signal Formulation (0–100)
+* Calculates a normalized, explainable 0–100 signal using a documented weighted formula combining the 6 core pillars of financial behavior.
+* Assigns a qualitative indicator (e.g., `78 / 100 — Relatively Stable Financial Behaviour`).
+
+#### Stage 7: "WHY THIS SIGNAL?" Generation
+* Dynamically scans the computed metrics to extract the top positive drivers (`+`) and negative drags (`-`), producing direct, non-technical reasoning for underwriters and applicants.
+
+#### Stage 8: Risk Indicator Scanning
+* Checks for specific operational vulnerabilities: revenue volatility, expense spikes, transaction gaps $> 14$ days, negative cash-flow streaks, and high payment-method concentration.
+
+#### Stage 9: Human Lender Review via Single-Screen Dashboard
+* The unified cockpit presents all metrics, trust checks, consistency indicators, charts, and reasons on a single clean interface for the human loan officer to make an informed, responsible credit decision.
+
+---
+
+## 5. Core Features & Functional Modules
+
+### 1. Landing & Header Section
+* **Branding**: `CREDITBRIDGE`
+* **Subtitle**: *"Making credit-invisible MSMEs assessable through explainable financial behaviour."*
+* **Mission Banner**: Clarifies that CREDITBRIDGE evaluates transaction-level data for human review.
+* **Primary Actions**: `Analyze Business` and `Load Demo Business` switcher.
+
+### 2. Data Input & Ingestion
+* **CSV Upload Engine**: Parses CSV files with immediate client-side and backend validation.
+* **Required CSV Schema**:
+  ```csv
+  transaction_id,date,amount,transaction_type,payment_method,description
+  TXN001,2026-01-03,15000,credit,UPI,Customer payment
+  TXN002,2026-01-05,5000,debit,Bank Transfer,Supplier payment
+  ```
+  * `transaction_type`: `credit` | `debit`
+  * `payment_method`: `UPI` | `Bank Transfer` | `Cash` | `Other`
+* **Pre-Loaded Demo Datasets**: Instant 1-click loading of 3 realistic synthetic MSME profiles.
+
+### 3. Business Profile
+* Displays essential firmographic context:
+  * **Business Name & Sector Type** (Retail, Food & Beverage, Electronics, etc.)
+  * **Business Age / Vintage** (e.g., 4 years)
+  * **Analysis Period** (e.g., Jan 2026 – Aug 2026)
+  * **Total Transactions Evaluated** (e.g., 1,284 transactions)
+
+### 4. Revenue Analysis
+* **Total Revenue**: Aggregate of all credit transactions.
+* **Monthly Revenue Chart**: Interactive bar/line chart displaying monthly sales trends.
+* **Revenue Growth %**: 
+  $$\text{Growth \%} = \frac{\text{Recent Period Revenue} - \text{Previous Period Revenue}}{\text{Previous Period Revenue}} \times 100$$
+* **Revenue Consistency**: Measured via the Coefficient of Variation ($CV = \frac{\sigma}{\mu}$):
+  * $CV < 0.20 \implies$ **High Consistency**
+  * $0.20 \le CV \le 0.40 \implies$ **Moderate Consistency**
+  * $CV > 0.40 \implies$ **Volatile**
+
+### 5. Expense Analysis
+* **Total Expenses**: Cumulative debit transactions.
+* **Monthly Expense Chart**: Outflow trend over the evaluated timeline.
+* **Expense Ratio**:
+  $$\text{Expense Ratio} = \frac{\text{Total Expenses}}{\text{Total Revenue}} \times 100$$
+* **Expense Spike Detection**: Flags months where:
+  $$\text{Monthly Expense} > \mu_{\text{expenses}} + 2 \times \sigma_{\text{expenses}}$$
+
+### 6. Cash Flow Analysis
+* **Monthly Inflow vs. Outflow vs. Net Cash Flow**:
+  $$\text{Net Cash Flow}_m = \text{Inflow}_m - \text{Outflow}_m$$
+* **Monthly Cash Flow Chart**: Visualizing positive and negative operational cushions.
+* **Positive vs. Negative Months Counter**: Displays clear ratios (e.g., `Positive: 7 / 8 months`, `Negative: 1 / 8 months`).
+* **Average Monthly Net Cash Flow**: Mean net surplus generated per month.
+
+### 7. Transaction Analysis
+* **Transaction Count**: Total credits and debits processed.
+* **Average Transaction Amount (Ticket Size)**: Total volume divided by transaction count.
+* **Transaction Frequency**: Average transactions per month.
+* **Transaction Gap Detection**: Computes calendar days between successive entries. Flags any gap exceeding **14 days** as an operational dormancy warning.
+
+### 8. Seasonality Detection
+* Groups monthly volume across the dataset to identify recurring peaks and lean periods.
+* Distinguishes seasonal troughs (e.g., monsoon season for street food) from business failure.
+* Displays a monthly activity trend chart highlighting high-activity vs. low-activity months.
+
+### 9. Payment Mix
+* **Channel Distribution**: Evaluates digital vs. cash transactions:
+  * `UPI` (%)
+  * `Bank Transfer` (%)
+  * `Cash` (%)
+  * `Other` (%)
+* **Donut Chart & Volume Count**: Renders visual breakdown and raw transaction counts for each method.
+
+### 10. Data Trust Check Engine ⭐
+* Internal data integrity auditor (not a claim of absolute fraud detection, but an internal consistency check):
+  1. **Duplicate Detection**: Identifies identical rows or duplicate `transaction_id`s.
+  2. **Date Integrity**: Validates formatting, checks for missing dates or future timestamps.
+  3. **Repeated Amount Clustering**: Detects if an unnatural percentage ($> 25\%$) of transactions share the exact same rupee value.
+  4. **Suspiciously Perfect Patterns**: Identifies identical daily transaction counts or recurring round-number amounts.
+* **Data Trust Status Badge**: `High Trust` | `Medium Trust` | `Review Required` with detailed checkmarks.
+
+### 11. Financial Story Consistency Engine ⭐
+* Compares user-declared monthly turnover with verified ledger inflows.
+* Highlights divergence using clear, non-accusatory terminology:
+  * `Consistent` ($< 15\%$ variance)
+  * `Minor Variance` ($15\% - 30\%$)
+  * `Possible Financial Story Inconsistency` ($> 30\%$ variance)
+
+### 12. Cross-Signal Consistency Engine ⭐
+* Triangulates Revenue Trend, Transaction Volume Trend, and Cash-Flow Trend.
+* Displays direction indicators ($\uparrow$, $\rightarrow$, $\downarrow$).
+* Generates an alignment verdict:
+  * `✓ Signals are broadly consistent`
+  * `⚠️ Cross-signal inconsistency detected` (with explicit explanation, e.g., *"Revenue rose 50% while transaction counts grew only 3%"*).
+
+### 13. Creditworthiness Signal (0–100)
+* Generates a transparent, weighted score from **0 to 100**.
+* Uses a strictly documented, deterministic model (no black-box ML).
+* Accompanied by descriptive status badges:
+  * `80 – 100`: **Strong Financial Behaviour**
+  * `65 – 79`: **Relatively Stable Financial Behaviour**
+  * `50 – 64`: **Moderate Financial Behaviour**
+  * `< 50`: **Elevated Risk Pattern**
+
+### 14. "WHY THIS SIGNAL?" Dynamic Explainability Engine
+* Inspects the underlying metrics to generate plain-English bullet points:
+  * `+ Revenue remained consistent across 8 months`
+  * `+ 7 of 8 months had positive net cash flow`
+  * `+ Transaction activity is regular (avg 160/mo)`
+  * `+ Revenue increased by 18.4%`
+  * `- Expense spike detected in June (₹1.8L vs ₹95k avg)`
+  * `- One long transaction gap (19 days) detected in April`
+
+### 15. Risk Indicators
+* Clear alert panel summarizing critical risk markers:
+  * Revenue Volatility ($CV > 0.40$)
+  * Expense Spikes
+  * Long Transaction Gaps ($> 14$ days)
+  * Consecutive Negative Cash Flow
+  * High Payment-Method or Customer Concentration
+  * Sharp Revenue Decline
+
+### 16. Traditional Bureau vs. CREDITBRIDGE Comparison
+* Visual comparison panel titled: **"FROM CREDIT-INVISIBLE TO ASSESSABLE"**
+  * **Traditional View**: Limited / No Credit History $\rightarrow$ **Insufficient Information (Rejected)**
+  * **CREDITBRIDGE View**: Transaction History + Cash-Flow Stability + Payment Regularity + Data Consistency $\rightarrow$ **Assessable for Human Underwriting**
+
+### 17. Single-Screen Lender Dashboard
+* Brings all 16 components together into a single, high-density, professional fintech dashboard designed for swift review by credit underwriters.
+
+---
+
+## 6. Mathematical Scoring Formulation
+
+The Creditworthiness Signal is calculated using a **transparent, normalized multi-factor weighted sum** scaled between 0 and 100:
+
+$$\text{Final Signal} = 0.20 \cdot S_{\text{rev\_cons}} + 0.25 \cdot S_{\text{cf\_stab}} + 0.15 \cdot S_{\text{rev\_growth}} + 0.15 \cdot S_{\text{txn\_reg}} + 0.15 \cdot S_{\text{exp\_stab}} + 0.10 \cdot S_{\text{pay\_reg}}$$
+
+### Component Sub-Score Definitions (Each Normalized 0–100):
+
+| Component | Weight | Metric Evaluated | Normalization Logic |
+|---|---|---|---|
+| **Revenue Consistency ($S_{\text{rev\_cons}}$)** | **20%** | Coefficient of Variation of monthly revenue ($CV_R$) | $100 \times \max(0, 1 - 2 \times CV_R)$ |
+| **Cash-Flow Stability ($S_{\text{cf\_stab}}$)** | **25%** | Positive cash flow month ratio & net margin | $70 \times \left(\frac{\text{Pos Months}}{\text{Total Months}}\right) + 30 \times \min\left(1, \frac{\text{Net Margin}}{0.20}\right)$ |
+| **Revenue Growth ($S_{\text{rev\_growth}}$)** | **15%** | Recent vs. previous period revenue growth | $50 + 2.5 \times \text{Growth \%}$ (clamped between 0 and 100) |
+| **Transaction Regularity ($S_{\text{txn\_reg}}$)** | **15%** | Active days per month & absence of dormancy gaps | $100 - (\text{Max Gap Days} \times 2.5)$ (min 0) |
+| **Expense Stability ($S_{\text{exp\_stab}}$)** | **15%** | Expense ratio health & count of expense spikes | $100 - (\text{Spike Count} \times 25) - \max(0, \text{Expense Ratio} - 85\%)$ |
+| **Payment Regularity ($S_{\text{pay\_reg}}$)** | **10%** | Digital payment share (UPI + Bank Transfer) | $(\% \text{ UPI} + \% \text{ Bank Transfer}) \times 100$ |
+
+---
+
+## 7. Pre-Loaded Demo Datasets
+
+CREDITBRIDGE includes 3 realistic synthetic MSME datasets ready for instant evaluation:
+
+1. **Business A: "Shree Retail Traders" (Stable Behaviour)**
+   * **Profile**: 4-year-old neighborhood retail grocery store.
+   * **Characteristics**: 8 months of records, steady monthly revenue (₹3.8L – ₹4.4L), 7 positive cash-flow months, low volatility ($CV = 0.08$), 80% digital payment mix (UPI/Bank Transfer), 0 transaction gaps $> 4$ days.
+   * **Result**: **78–82 / 100** (Stable Financial Behaviour, High Data Trust).
+
+2. **Business B: "Urban Foods" (Growing Behaviour)**
+   * **Profile**: 2-year-old cloud kitchen and food stall.
+   * **Characteristics**: Rapidly increasing revenue (+28% QoQ), growing transaction count, healthy 72% expense ratio, consistent UPI collections, high customer footfall.
+   * **Result**: **84–88 / 100** (Strong Growth & Solid Cash Flow, Consistent Cross-Signals).
+
+3. **Business C: "Metro Electronics" (Risk-Pattern Behaviour)**
+   * **Profile**: 1-year-old consumer electronics repair and accessories shop.
+   * **Characteristics**: Erratic revenue swings ($CV > 0.48$), severe expense spike in Month 4 due to inventory purchase, 2 consecutive negative cash-flow months, 18-day transaction gap, high cash concentration.
+   * **Result**: **44–48 / 100** (Elevated Risk Pattern, Multiple Warning Flags).
+
+---
+
+## 8. Application Tech Stack
+
+* **Frontend**:
+  * **React (TypeScript / JavaScript)**
+  * **Vite** (Ultra-fast build tool and dev server)
+  * **Tailwind CSS** (Clean, modern fintech styling)
+  * **Recharts** (Lightweight, responsive charts for revenue, expenses, cash flows, and payment mix)
+  * **Lucide React** (Crisp, modern iconography)
+* **Backend**:
+  * **Python 3.10+**
+  * **FastAPI** (High-performance asynchronous REST API)
+  * **Uvicorn** (Lightning-fast ASGI server)
+* **Data Processing & Analytics**:
+  * **Pandas** (Vectorized time-series ledger manipulation and grouping)
+  * **NumPy** (Statistical calculations: standard deviations, coefficients of variation, spike detection)
+
+---
+
+## 9. Project Directory Structure
+
+```
+c:/Users/lenovo/OneDrive/Desktop/Finance/
+├── backend/
+│   ├── main.py                     # FastAPI application & API endpoints
+│   ├── analytics.py                # Revenue, expense, cash-flow & transaction engines
+│   ├── data_trust.py               # Data trust & consistency verification engine
+│   ├── scoring.py                  # Transparent 0-100 scoring & 'Why This Signal?' attribution
+│   ├── demo_data.py                # Synthetic generator for the 3 demo businesses
+│   └── requirements.txt            # Python dependencies (fastapi, uvicorn, pandas, numpy)
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Header.jsx          # Branding, subtitle & demo business selector
+│   │   │   ├── BusinessProfile.jsx # Firmographic summary card
+│   │   │   ├── TopMetrics.jsx      # Key summary cards (Revenue, Expenses, Signal)
+│   │   │   ├── RevenueExpense.jsx  # Monthly revenue & expense charts
+│   │   │   ├── CashFlowChart.jsx   # Inflow vs outflow vs net cash flow
+│   │   │   ├── PaymentMix.jsx      # Donut chart & payment distribution
+│   │   │   ├── TransactionInfo.jsx # Frequency, ticket size & gap detection
+│   │   │   ├── DataTrustCard.jsx   # Data trust status & integrity checks
+│   │   │   ├── FinancialStory.jsx  # Declared vs observed revenue comparison
+│   │   │   ├── CrossSignal.jsx     # Revenue, transaction & cash-flow trend alignment
+│   │   │   ├── WhySignal.jsx       # 'WHY THIS SIGNAL?' dynamic positive/negative drivers
+│   │   │   ├── RiskIndicators.jsx  # Operational risk warning badges
+│   │   │   └── BureauComparison.jsx# 'Credit-Invisible to Assessable' comparison panel
+│   │   ├── App.jsx                 # Consolidated single-screen lender dashboard
+│   │   ├── main.jsx                # React entry point
+│   │   └── index.css               # Tailwind CSS imports
+│   ├── package.json
+│   ├── vite.config.js
+│   └── tailwind.config.js
+├── data/
+│   ├── shree_retail_traders.csv    # Synthetic dataset: Stable
+│   ├── urban_foods.csv             # Synthetic dataset: Growing
+│   └── metro_electronics.csv       # Synthetic dataset: Risk-Pattern
+└── README.md                       # Complete project documentation
+```
+
+---
+
+## 10. How to Run Locally
+
+### Prerequisites
+* **Node.js** (v18 or higher)
+* **Python** (v3.10 or higher)
+
+### Backend Setup
+```bash
+# Navigate to backend directory
+cd backend
+
+# Create and activate virtual environment
+python -m venv venv
+# On Windows:
+.\venv\Scripts\activate
+# On Linux/macOS:
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Start FastAPI server (runs on http://localhost:8000)
+uvicorn main:app --reload --port 8000
+```
+
+### Frontend Setup
+```bash
+# Navigate to frontend directory
+cd frontend
+
+# Install npm dependencies
+npm install
+
+# Start Vite dev server (runs on http://localhost:5173)
+npm run dev
+```
+
+---
+
+## 11. 2–3 Minute Hackathon Demo Walkthrough
+
+1. **Introduction (30s)**:
+   * Open the app at `http://localhost:5173`. Point out the header: *"CREDITBRIDGE makes credit-invisible MSMEs assessable through explainable financial behaviour, without black-box approval."*
+2. **Examine Stable Business — Shree Retail Traders (60s)**:
+   * Click **"Load Demo: Shree Retail Traders"**.
+   * Walk through the **Business Profile** and **Top Metrics** (₹38.4L Revenue, 7/8 positive cash-flow months).
+   * Highlight the **Data Trust** badge (`High Trust`, 0 duplicates, valid timeline).
+   * Show **Financial Story Consistency** (Declared ₹4.8L vs Observed ₹4.82L $\rightarrow$ Consistent).
+   * Show **Cross-Signal Consistency** (Revenue, Txn, and Cash Flow all upward aligned).
+   * Reveal the **Signal: 81 / 100** and open **"WHY THIS SIGNAL?"** showing exact positive factors.
+3. **Switch to Risk-Pattern Business — Metro Electronics (45s)**:
+   * Click **"Metro Electronics"** in the demo selector.
+   * Observe the instant dashboard transformation:
+     * Signal drops to **46 / 100** (*Elevated Risk Pattern*).
+     * **Expense Spike Alert**: Major spike in Month 4.
+     * **Transaction Gap Alert**: 18-day gap detected.
+     * **Cross-Signal Inconsistency**: Revenue up, but cash flow severely negative.
+     * **"WHY THIS SIGNAL?"**: Negatives outweigh positives.
+4. **Conclusion & Human Review (15s)**:
+   * Emphasize: *"The underwriter now has a clear, objective, transparent assessment in 2 minutes instead of rejecting an invisible borrower or writing a blind check."*
+
+---
+
+## 12. Responsible AI, Ethics & Important Restrictions
+
+### What CREDITBRIDGE Does NOT Do:
+* **No Automated Approvals / Rejections**: The system deliberately omits an "Approved" or "Denied" button. It equips human credit officers with explainable intelligence.
+* **No PII or Sensitive Attribute Usage**: The scoring formula explicitly excludes religion, caste, gender, geographic pin code, or personal demographic proxies.
+* **No Production Banking / Real KYC Connections**: Built strictly for synthetic transaction ledgers in compliance with hackathon data safety guidelines.
+* **No Black-Box Neural Networks**: All scoring formulas, weights, and thresholds are fully transparent and auditable.
+
+### Data Trust Disclaimer:
+* Data Trust checks inspect **internal ledger consistency, duplicate rows, and timeline gaps**. They are an indicator of data hygiene and potential anomalies, **not** definitive legal proof of fraud.
