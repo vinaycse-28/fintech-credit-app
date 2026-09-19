@@ -13,7 +13,7 @@ import Card from '../common/Card';
 import Badge from '../common/Badge';
 import { getTransactions } from '../../services/api';
 
-export default function TransactionHistoryTab() {
+export default function TransactionHistoryTab({ businessId = null }) {
   const [transactions, setTransactions] = useState([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
@@ -55,7 +55,8 @@ export default function TransactionHistoryTab() {
         year: yearFilter,
         month: monthFilter,
         page,
-        pageSize
+        pageSize,
+        businessId
       });
       setTransactions(res.items || []);
       setTotal(res.total || 0);

@@ -348,13 +348,17 @@ export default function App() {
                       )}
 
                       {(activeTab === 'transactions' || activeTab === 'transaction-history') && (
-                        <TransactionHistoryTab />
+                        <TransactionHistoryTab businessId={currentBusinessId} />
                       )}
 
                       {(activeTab === 'report' || activeTab === 'credit-report') && (
                         <CreditReportTab
                           profile={profile}
                           analysis={dashboardData}
+                          financials={financials}
+                          behaviour={behaviour}
+                          trustData={trustData}
+                          scoring={scoring}
                           onBack={() => handleTabSelect('overview')}
                         />
                       )}

@@ -451,79 +451,66 @@ export function evaluateCrossSignals(financials, behaviour) {
 }
 
 // 6. Creditworthiness Signal Calculation (0 - 100)
-export function calculateCreditBridgeScore(financials, behaviour, trust, story) {
-  // Formula weights from readme.2:
-  // 1. Revenue Consistency (20%): 100 * max(0, 1 - 2 * CV_R)
+export function calculateCreditBridgeScore(financials, behaviour, trust, story, crossSignal = {}) {
+  // 1. Revenue Stability (Max 20 pts)
   const cv = financials.revenueCV || 0;
-  const s_rev_cons = Math.round(100 * Math.max(0, 1 - 2 * cv));
-
-  // 2. Cash-Flow Stability (25%): 70 * (Pos Months / Total) + 30 * min(1, Net Margin / 0.20)
-  const posRatio = financials.totalMonths > 0 ? (financials.positiveMonths / financials.totalMonths) : 0;
-  const netMargin = financials.totalRevenue > 0 ? (financials.netCashFlow / financials.totalRevenue) : 0;
-  const marginRatio = Math.max(0, Math.min(1, netMargin / 0.20));
-  const s_cf_stab = Math.round(70 * posRatio + 30 * marginRatio);
-
-  // 3. Revenue Growth (15%): clamp(50 + 2.5 * Growth %, 0, 100)
   const growth = financials.revenueGrowth || 0;
-  const s_rev_growth = Math.round(Math.max(0, Math.min(100, 50 + 2.5 * growth)));
+  const cvScore = Math.max(0, 1 - 2 * cv) * 15;
+  const growthScore = Math.min(5, Math.max(0, 2.5 + (growth / 20) * 2.5));
+  const s_rev = Math.max(0, Math.min(20, Math.round(cvScore + growthScore)));
 
-  // 4. Transaction Regularity (15%): 100 - (Max Gap Days * 2.5) min 0
+  // 2. Cash Flow Strength (Max 20 pts)
+  const totalMonths = financials.totalMonths || 1;
+  const posMonths = financials.positiveMonths || 0;
+  const posRatio = totalMonths > 0 ? posMonths / totalMonths : 0;
+  const netMargin = financials.totalRevenue > 0 ? (financials.netCashFlow || 0) / financials.totalRevenue : 0;
+  const marginRatio = Math.max(0, Math.min(1, netMargin / 0.20));
+  const s_cf = Math.max(0, Math.min(20, Math.round(14 * posRatio + 6 * marginRatio)));
+
+  // 3. Payment Behaviour (Max 15 pts)
+  const paymentMix = behaviour.paymentMix || [];
+  const digitalMix = paymentMix
+    .filter(p => p.name === 'UPI' || p.name === 'Bank Transfer')
+    .reduce((acc, p) => acc + (p.percent || 0), 0);
+  const s_pay = Math.max(0, Math.min(15, Math.round((digitalMix / 100) * 15)));
+
+  // 4. Transaction Behaviour (Max 15 pts)
   const maxGap = behaviour.maxGapDays || 0;
-  const s_txn_reg = Math.round(Math.max(0, 100 - (maxGap * 2.5)));
+  const freq = behaviour.avgMonthlyFrequency || 0;
+  const gapPenalty = Math.min(8, maxGap * 0.5);
+  const baseFreqScore = Math.min(7, (freq / 20) * 7);
+  const s_txn = Math.max(0, Math.min(15, Math.round(Math.max(0, 15 - gapPenalty + (baseFreqScore - 3.5)))));
 
-  // 5. Expense Stability (15%): 100 - (Spike Count * 25) - max(0, Expense Ratio - 85)
-  const spikeCount = financials.expenseSpikes?.length || 0;
-  const expRatio = financials.expenseRatio || 0;
-  const excessExp = Math.max(0, expRatio - 85);
-  const s_exp_stab = Math.round(Math.max(0, 100 - (spikeCount * 25) - excessExp));
+  // 5. Financial Consistency (Max 15 pts)
+  const variancePct = story.variancePct || 0;
+  const isCrossConsistent = crossSignal.isConsistent !== false;
+  const storyScore = Math.max(0, 10 - variancePct / 5);
+  const crossScore = isCrossConsistent ? 5 : 1;
+  const s_cons = Math.max(0, Math.min(15, Math.round(storyScore + crossScore)));
 
-  // 6. Payment Regularity (10%): (% UPI + % Bank Transfer)
-  const digitalMix = behaviour.paymentMix
-    ?.filter(p => p.name === 'UPI' || p.name === 'Bank Transfer')
-    .reduce((acc, p) => acc + p.percent, 0) || 0;
-  const s_pay_reg = Math.min(100, digitalMix);
+  // 6. Data Trust (Max 15 pts)
+  const rawTrustScore = trust.score ?? 95;
+  const s_trust = Math.max(0, Math.min(15, Math.round((rawTrustScore / 100) * 15)));
 
-  // Raw weighted sum
-  let finalScore = (
-    0.20 * s_rev_cons +
-    0.25 * s_cf_stab +
-    0.15 * s_rev_growth +
-    0.15 * s_txn_reg +
-    0.15 * s_exp_stab +
-    0.10 * s_pay_reg
-  );
-
-  // Penalty adjustments for Trust and Story inconsistencies
-  if (trust.badgeType === 'danger') {
-    finalScore = Math.max(20, finalScore - 18);
-  } else if (trust.badgeType === 'warning') {
-    finalScore = Math.max(30, finalScore - 6);
-  }
-
-  if (story.badgeType === 'danger') {
-    finalScore = Math.max(25, finalScore - 12);
-  } else if (story.badgeType === 'warning') {
-    finalScore = Math.max(35, finalScore - 5);
-  }
-
-  const roundedScore = Math.min(100, Math.max(10, Math.round(finalScore)));
+  // Master 0-100 sum
+  const totalScore = Math.min(100, Math.max(0, s_rev + s_cf + s_pay + s_txn + s_cons + s_trust));
 
   // Risk categorization
-  let riskCategory = "Relatively Stable";
+  let riskCategory = "Relatively Stable Behaviour";
   let riskLevel = "Moderate Risk";
-  let badgeColor = "amber";
+  let badgeColor = "blue";
 
-  if (roundedScore >= 80) {
+  if (totalScore >= 80) {
     riskCategory = "Strong Financial Behaviour";
     riskLevel = "Low Risk";
     badgeColor = "emerald";
-  } else if (roundedScore >= 65) {
+  } else if (totalScore >= 65) {
     riskCategory = "Relatively Stable Behaviour";
     riskLevel = "Moderate Risk";
     badgeColor = "blue";
-  } else if (roundedScore >= 50) {
+  } else if (totalScore >= 40) {
     riskCategory = "Moderate Financial Behaviour";
-    riskLevel = "Elevated Risk";
+    riskLevel = "Moderate-High Risk";
     badgeColor = "amber";
   } else {
     riskCategory = "Elevated Risk Pattern";
@@ -537,16 +524,16 @@ export function calculateCreditBridgeScore(financials, behaviour, trust, story) 
   const riskWarnings = [];
 
   // Positive Drivers check
-  if (s_rev_cons >= 75) {
+  if (s_rev >= 15) {
     positiveDrivers.push({
       title: "Consistent Revenue Inflows",
       detail: `Monthly revenue variation is low (CV = ${financials.revenueCV}), providing predictable operational turnover.`
     });
   }
-  if (posRatio >= 0.75) {
+  if (s_cf >= 15) {
     positiveDrivers.push({
       title: "Disciplined Cash Flow Cushion",
-      detail: `${financials.positiveMonths} of ${financials.totalMonths} months generated positive net operational cash surplus.`
+      detail: `${posMonths} of ${totalMonths} months generated positive net operational cash surplus.`
     });
   }
   if (growth > 10) {
@@ -555,13 +542,13 @@ export function calculateCreditBridgeScore(financials, behaviour, trust, story) 
       detail: `Recent periods demonstrated +${growth}% expansion in sales volume.`
     });
   }
-  if (s_pay_reg >= 70) {
+  if (s_pay >= 12) {
     positiveDrivers.push({
       title: "High Digital Payment Adoption",
       detail: `${digitalMix}% of receipts flow through verifiable UPI & Bank Transfer channels.`
     });
   }
-  if (maxGap < 7 && behaviour.totalCount > 15) {
+  if (maxGap < 7 && (behaviour.totalCount || 0) > 15) {
     positiveDrivers.push({
       title: "Active Daily Operations",
       detail: `No dormancy gaps exceeding ${maxGap} days; steady active customer transactions.`
@@ -575,16 +562,16 @@ export function calculateCreditBridgeScore(financials, behaviour, trust, story) 
   }
 
   // Negative Drivers check
-  if (s_rev_cons < 55) {
+  if (s_rev < 10) {
     negativeDrivers.push({
       title: "Revenue Volatility",
       detail: `High turnover swings (CV = ${financials.revenueCV}) create cash-flow uncertainty.`
     });
   }
-  if (posRatio < 0.60) {
+  if (s_cf < 10) {
     negativeDrivers.push({
       title: "Frequent Cash-Flow Deficits",
-      detail: `${financials.totalMonths - financials.positiveMonths} months experienced negative net cash flow.`
+      detail: `${totalMonths - posMonths} months experienced negative net cash flow.`
     });
   }
   if (maxGap >= 14) {
@@ -593,6 +580,7 @@ export function calculateCreditBridgeScore(financials, behaviour, trust, story) 
       detail: `Extended dormancy period indicates operational pauses or unrecorded off-ledger cash activity.`
     });
   }
+  const spikeCount = financials.expenseSpikes?.length || 0;
   if (spikeCount > 0) {
     negativeDrivers.push({
       title: `${spikeCount} Major Expense Spike(s) Detected`,
@@ -605,6 +593,7 @@ export function calculateCreditBridgeScore(financials, behaviour, trust, story) 
       detail: `Cash receipts account for ${100 - digitalMix}%, reducing auditable bank trail.`
     });
   }
+  const expRatio = financials.expenseRatio || 0;
   if (expRatio > 85) {
     negativeDrivers.push({
       title: "Thin Operating Margin",
@@ -627,33 +616,107 @@ export function calculateCreditBridgeScore(financials, behaviour, trust, story) 
       message: `Maximum transaction gap of ${maxGap} days exceeds the 14-day safety threshold.`
     });
   }
-  if (story.badgeType !== 'good') {
+  if (story.badgeType && story.badgeType !== 'good') {
     riskWarnings.push({
       severity: story.badgeType === 'danger' ? 'high' : 'medium',
       title: "Story Divergence Flag",
       message: story.detail
     });
   }
-  if (trust.badgeType !== 'good') {
+  if (trust.badgeType && trust.badgeType !== 'good') {
     riskWarnings.push({
       severity: "medium",
       title: "Data Trust Integrity Review",
-      message: `${trust.duplicateCount} duplicates or ${trust.invalidCount} invalid rows detected in transaction ledger.`
+      message: `${trust.duplicateCount || 0} duplicates or ${trust.invalidCount || 0} invalid rows detected in transaction ledger.`
     });
   }
 
   return {
-    score: roundedScore,
+    score: totalScore,
     riskCategory,
     riskLevel,
     badgeColor,
+    breakdown: {
+      revenue_stability: s_rev,
+      cash_flow_strength: s_cf,
+      payment_behaviour: s_pay,
+      transaction_behaviour: s_txn,
+      financial_consistency: s_cons,
+      data_trust: s_trust
+    },
     pillars: [
-      { name: "Revenue Stability", score: s_rev_cons, weight: "20%", icon: "TrendingUp", color: "blue" },
-      { name: "Cash Flow Strength", score: s_cf_stab, weight: "25%", icon: "DollarSign", color: "emerald" },
-      { name: "Transaction Regularity", score: s_txn_reg, weight: "15%", icon: "Activity", color: "indigo" },
-      { name: "Expense Discipline", score: s_exp_stab, weight: "15%", icon: "ShieldCheck", color: "amber" },
-      { name: "Revenue Growth", score: s_rev_growth, weight: "15%", icon: "Zap", color: "cyan" },
-      { name: "Payment Digitalization", score: s_pay_reg, weight: "10%", icon: "CreditCard", color: "purple" }
+      {
+        name: "Revenue Stability",
+        score: s_rev,
+        max_score: 20,
+        raw_score: s_rev,
+        percentage: Math.min(100, Math.max(0, Math.round((s_rev / 20) * 100))),
+        weight: "20%",
+        icon: "TrendingUp",
+        color: "blue",
+        explanation: s_rev >= 16 
+          ? `Predictable monthly turnover with low volatility (CV: ${cv}) and positive trajectory.` 
+          : `Turnover swings (CV: ${cv}) create cash-flow uncertainty.`
+      },
+      {
+        name: "Cash Flow Strength",
+        score: s_cf,
+        max_score: 20,
+        raw_score: s_cf,
+        percentage: Math.min(100, Math.max(0, Math.round((s_cf / 20) * 100))),
+        weight: "20%",
+        icon: "DollarSign",
+        color: "emerald",
+        explanation: s_cf >= 16 
+          ? `Disciplined cash generation; ${posMonths} of ${totalMonths} months had net operating surplus.` 
+          : `Frequent cash-flow deficits (${totalMonths - posMonths} negative months).`
+      },
+      {
+        name: "Payment Behaviour",
+        score: s_pay,
+        max_score: 15,
+        raw_score: s_pay,
+        percentage: Math.min(100, Math.max(0, Math.round((s_pay / 15) * 100))),
+        weight: "15%",
+        icon: "CreditCard",
+        color: "purple",
+        explanation: `${digitalMix}% of receipts flow through verifiable UPI & Bank Transfer channels.`
+      },
+      {
+        name: "Transaction Behaviour",
+        score: s_txn,
+        max_score: 15,
+        raw_score: s_txn,
+        percentage: Math.min(100, Math.max(0, Math.round((s_txn / 15) * 100))),
+        weight: "15%",
+        icon: "Activity",
+        color: "indigo",
+        explanation: maxGap < 7 
+          ? `Active daily operations with zero dormancy gaps over 7 days.` 
+          : `Max inactivity gap of ${maxGap} days observed.`
+      },
+      {
+        name: "Financial Consistency",
+        score: s_cons,
+        max_score: 15,
+        raw_score: s_cons,
+        percentage: Math.min(100, Math.max(0, Math.round((s_cons / 15) * 100))),
+        weight: "15%",
+        icon: "Scale",
+        color: "cyan",
+        explanation: `Declared revenue matches verified bank inflows within ${variancePct}%.`
+      },
+      {
+        name: "Data Trust",
+        score: s_trust,
+        max_score: 15,
+        raw_score: s_trust,
+        percentage: Math.min(100, Math.max(0, Math.round((s_trust / 15) * 100))),
+        weight: "15%",
+        icon: "ShieldCheck",
+        color: "amber",
+        explanation: `${trust.duplicateCount || 0} duplicates and ${trust.invalidCount || 0} invalid entries flagged.`
+      }
     ],
     positiveDrivers,
     negativeDrivers,
@@ -671,7 +734,7 @@ export function runCompleteAnalysis(businessProfile, transactions) {
     financials.avgMonthlyRevenue
   );
   const crossSignal = evaluateCrossSignals(financials, behaviour);
-  const scoring = calculateCreditBridgeScore(financials, behaviour, trust, story);
+  const scoring = calculateCreditBridgeScore(financials, behaviour, trust, story, crossSignal);
 
   return {
     businessProfile,
