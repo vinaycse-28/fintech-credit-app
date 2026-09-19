@@ -99,6 +99,32 @@ export function setSavedBusinessId(bizId) {
   }
 }
 
+/**
+ * Retrieve cached dashboard analysis data for a specific business ID from localStorage
+ */
+export function getCachedAnalysisData(bizId) {
+  try {
+    if (!bizId) return null;
+    const raw = localStorage.getItem(`creditbridge_cache_${bizId}`);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Persist cached dashboard analysis data to localStorage for instantaneous restoration
+ */
+export function setCachedAnalysisData(bizId, data) {
+  try {
+    if (bizId && data) {
+      localStorage.setItem(`creditbridge_cache_${bizId}`, JSON.stringify(data));
+    }
+  } catch (e) {
+    console.warn('Could not cache analysis data locally', e);
+  }
+}
+
 // Simulate network delay for local offline fallback
 const delay = (ms = 150) => new Promise(resolve => setTimeout(resolve, ms));
 

@@ -36,6 +36,8 @@ import LoanReadinessTab from './components/dashboard/LoanReadinessTab';
 import { 
   getCurrentProfile, 
   getSavedBusinessId,
+  getCachedAnalysisData,
+  setCachedAnalysisData,
   getBusinessProfile,
   loadDemoBusiness, 
   createBusinessProfile, 
@@ -51,27 +53,41 @@ import {
 import { DEMO_TRANSACTIONS } from './services/mockData';
 
 export default function App() {
-  const { user, businesses, currentBusinessId, selectBusiness, refreshBusinesses } = useAuth();
+  const { user, businesses, currentBusinessId, selectBusiness, refreshBusinesses, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
+  const initialBizId = getSavedBusinessId();
+  const initialCache = initialBizId ? getCachedAnalysisData(initialBizId) : null;
+
   // Active Business & Cockpit Data State
-  const [profile, setProfile] = useState(getCurrentProfile());
+  const [profile, setProfile] = useState(initialCache?.dashboard?.profile || getCurrentProfile());
   const [transactions, setTransactions] = useState([]);
-  const [dashboardData, setDashboardData] = useState(null);
-  const [financials, setFinancials] = useState({});
-  const [behaviour, setBehaviour] = useState({});
-  const [trustData, setTrustData] = useState({});
-  const [scoring, setScoring] = useState({});
+  const [dashboardData, setDashboardData] = useState(initialCache?.dashboard || null);
+  const [financials, setFinancials] = useState(initialCache?.financials || {});
+  const [behaviour, setBehaviour] = useState(initialCache?.behaviour || {});
+  const [trustData, setTrustData] = useState(initialCache?.trust || {});
+  const [scoring, setScoring] = useState(initialCache?.scoring || {});
   const [loading, setLoading] = useState(false);
 
   // Load analytical data for a specific business ID
   const loadAnalysisData = async (targetBizId = null) => {
-    const bizId = targetBizId || currentBusinessId || getSavedBusinessId();
+    const bizId = targetBizId || currentBusinessId || getSavedBusinessId() || (businesses.length > 0 ? businesses[0].id : null);
     if (!bizId) return null;
 
+    // Apply cached data first for instant UI response
+    const cached = getCachedAnalysisData(bizId);
+    if (cached) {
+      if (cached.dashboard) setDashboardData(cached.dashboard);
+      if (cached.financials) setFinancials(cached.financials);
+      if (cached.behaviour) setBehaviour(cached.behaviour);
+      if (cached.trust) setTrustData(cached.trust);
+      if (cached.scoring) setScoring(cached.scoring);
+      if (cached.dashboard?.profile) setProfile(cached.dashboard.profile);
+    }
+
     try {
-      setLoading(true);
+      if (!cached) setLoading(true);
       const [dash, fin, beh, tru, sco] = await Promise.all([
         getDashboard(bizId),
         getFinancialAnalysis(bizId),
@@ -79,13 +95,24 @@ export default function App() {
         getTrustAnalysis(bizId),
         getScoreExplanation(bizId)
       ]);
-      setDashboardData(dash);
-      setFinancials(fin || {});
-      setBehaviour(beh || {});
-      setTrustData(tru || {});
-      setScoring(sco || {});
-      if (dash?.profile) {
-        setProfile(dash.profile);
+      if (dash) {
+        setDashboardData(dash);
+        setFinancials(fin || dash.financials || {});
+        setBehaviour(beh || dash.behaviour || {});
+        setTrustData(tru || dash.trust || {});
+        setScoring(sco || dash.scoring || {});
+        if (dash.profile) {
+          setProfile(dash.profile);
+        }
+
+        // Cache analytical state for seamless refresh persistence
+        setCachedAnalysisData(bizId, {
+          dashboard: dash,
+          financials: fin || dash.financials || {},
+          behaviour: beh || dash.behaviour || {},
+          trust: tru || dash.trust || {},
+          scoring: sco || dash.scoring || {}
+        });
       }
       return dash;
     } catch (err) {
@@ -96,12 +123,16 @@ export default function App() {
     }
   };
 
-  // Restore dashboard data whenever currentBusinessId changes
+  // Restore dashboard data whenever currentBusinessId or businesses list resolves
   useEffect(() => {
-    if (currentBusinessId) {
-      loadAnalysisData(currentBusinessId);
+    const bizId = currentBusinessId || getSavedBusinessId() || (businesses.length > 0 ? businesses[0].id : null);
+    if (bizId) {
+      if (!currentBusinessId) {
+        selectBusiness(bizId);
+      }
+      loadAnalysisData(bizId);
     }
-  }, [currentBusinessId]);
+  }, [currentBusinessId, businesses]);
 
   // Handler to switch between 4 synthetic MSME demo businesses
   const handleSelectDemo = async (demoId) => {
@@ -284,14 +315,14 @@ export default function App() {
                 {/* Dashboard Content Canvas */}
                 <div className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">
                   
-                  {loading && !dashboardData ? (
+                  {(authLoading || (loading && !dashboardData)) ? (
                     <div className="flex items-center justify-center min-h-[50vh]">
-                      <div className="text-center p-8 bg-white rounded-2xl border border-slate-200">
+                      <div className="text-center p-8 bg-white rounded-2xl border border-slate-200 shadow-sm">
                         <div className="w-10 h-10 border-3 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
                         <p className="text-xs text-slate-600 font-semibold">Loading Underwriter Cockpit...</p>
                       </div>
                     </div>
-                  ) : (!currentBusinessId && businesses.length === 0) ? (
+                  ) : (!authLoading && !currentBusinessId && !getSavedBusinessId() && businesses.length === 0) ? (
                     <div className="text-center max-w-md mx-auto py-16 bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
                       <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-4 font-bold">
                         1
